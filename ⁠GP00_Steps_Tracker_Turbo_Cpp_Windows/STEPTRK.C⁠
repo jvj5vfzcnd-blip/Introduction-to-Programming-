@@ -1,0 +1,70 @@
+# Introduction-to-Programming
+#include <stdio.h>
+#include <conio.h>
+
+int main() {
+    /* Variables */
+    int targetSteps = 10000;
+    int dailySteps[7];
+    int totalSteps = 0;
+    float averageSteps = 0.0;
+    int maxSteps = 0;
+    int minSteps = 0;
+    int i;
+    int daysMetTarget = 0;
+
+    clrscr(); /* Clear screen for Turbo C++ */
+
+    printf("======================================\n");
+    printf("         STEPS TRACKER APP            \n");
+    printf("======================================\n\n");
+
+    /* Input daily steps */
+    printf("Enter step count for 7 days:\n");
+    for(i = 0; i < 7; i++) {
+        printf("Day %d steps: ", i + 1);
+        scanf("%d", &dailySteps[i]);
+    }
+
+    /* Process data */
+    maxSteps = dailySteps[0];
+    minSteps = dailySteps[0];
+
+    for(i = 0; i < 7; i++) {
+        totalSteps += dailySteps[i];
+        
+        if(dailySteps[i] > maxSteps) {
+            maxSteps = dailySteps[i];
+        }
+        if(dailySteps[i] < minSteps) {
+            minSteps = dailySteps[i];
+        }
+        if(dailySteps[i] >= targetSteps) {
+            daysMetTarget++;
+        }
+    }
+
+    averageSteps = (float)totalSteps / 7.0;
+
+    /* Display summary */
+    printf("\n--------------------------------------\n");
+    printf("          WEEKLY SUMMARY              \n");
+    printf("--------------------------------------\n");
+    printf("Total Steps Recorded : %d\n", totalSteps);
+    printf("Average Daily Steps  : %.2f\n", averageSteps);
+    printf("Highest Daily Steps  : %d\n", maxSteps);
+    printf("Lowest Daily Steps   : %d\n", minSteps);
+    printf("Days Target Met      : %d / 7\n", daysMetTarget);
+
+    /* Feedback based on performance */
+    printf("--------------------------------------\n");
+    if(averageSteps >= targetSteps) {
+        printf("Status: Great job! You met your weekly activity goal.\n");
+    } else {
+        printf("Status: Keep pushing! Try to walk more next week.\n");
+    }
+    printf("======================================\n");
+
+    getch(); /* Pause screen output */
+    return 0;
+}
